@@ -324,7 +324,7 @@ const Contact = () => {
     }
 
     try {
-      const result = await sendEmail(formData);
+      await sendEmail(formData);
       
       setSubmitStatus({ 
         type: 'success', 

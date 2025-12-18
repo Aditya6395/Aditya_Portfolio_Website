@@ -15,12 +15,24 @@ const fadeInUp = keyframes`
 `;
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-justify-content-center;
-position: relative;
-z-index: 1;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  padding: 0 16px;
+  margin-top: 100px;
+  
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    padding: 0 12px;
+  }
+  
+  @media (max-width: 480px) {
+    margin-top: 40px;
+    padding: 0 8px;
+  }
 `;
 const Wrapper = styled.div`
   position: relative;
@@ -42,9 +54,15 @@ const Title = styled.div`
   font-weight: 600;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
+  
   @media (max-width: 768px) {
     margin-top: 12px;
     font-size: 32px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-top: 8px;
   }
 `;
 
@@ -53,8 +71,13 @@ const Desc = styled.div`
   text-align: center;
   font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};
+  
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 `;
 
@@ -121,6 +144,16 @@ const SkillTitle = styled.div`
   margin-bottom: 20px;
   text-align: center;
   color: ${({ theme }) => theme.text_secondary};
+  
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
 `;
 
 const SkillList = styled.div`

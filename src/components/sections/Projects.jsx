@@ -4,14 +4,24 @@ import { projects } from "../../data/constants";
 import ProjectCard from "../cards/ProjectCard";
 
 const Container = styled.div`
-margin-top: 100px;
-display: flex;
-flex-direction: column;
-justify-content-center;
-position: relative;
-z-index: 1;
-padding: 0 16px;
-align-items: center;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 16px;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    padding: 0 12px;
+  }
+  
+  @media (max-width: 480px) {
+    margin-top: 40px;
+    padding: 0 8px;
+  }
 `;
 const Wrapper = styled.div`
   position: relative;
@@ -33,9 +43,15 @@ const Title = styled.div`
   font-weight: 600;
   margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
+  
   @media (max-width: 768px) {
     margin-top: 12px;
     font-size: 32px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-top: 8px;
   }
 `;
 
@@ -44,8 +60,13 @@ const Desc = styled.div`
   text-align: center;
   font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};
+  
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 `;
 

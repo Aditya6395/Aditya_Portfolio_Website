@@ -2,6 +2,24 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { KeyboardArrowUp } from "@mui/icons-material";
 
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    font-size: 28px;
+    
+    @media (max-width: 768px) {
+      font-size: 26px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 24px;
+    }
+  }
+`;
+
 const ScrollButton = styled.button`
   position: fixed;
   bottom: 30px;
@@ -72,7 +90,9 @@ const ScrollToTop = () => {
 
   return (
     <ScrollButton visible={isVisible} onClick={scrollToTop} aria-label="Scroll to top">
-      <KeyboardArrowUp style={{ fontSize: "28px" }} />
+      <IconWrapper>
+        <KeyboardArrowUp />
+      </IconWrapper>
     </ScrollButton>
   );
 };

@@ -19,7 +19,9 @@ const Overlay = styled(motion.div)`
 `;
 
 const PopupContainer = styled(motion.div)`
-  background-color: ${({ theme }) => theme.card};
+  background-color: ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(255, 255, 255, 0.98)" 
+    : theme.card};
   border-radius: 16px;
   padding: 32px;
   max-width: 600px;
@@ -27,12 +29,21 @@ const PopupContainer = styled(motion.div)`
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "0 10px 40px rgba(0, 0, 0, 0.15)" 
+    : "0 10px 40px rgba(0, 0, 0, 0.5)"};
+  border: 1px solid ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(0, 0, 0, 0.1)" 
+    : "rgba(255, 255, 255, 0.1)"};
 
   @media (max-width: 640px) {
     padding: 24px;
     max-height: 95vh;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 20px;
+    border-radius: 12px;
   }
 `;
 
@@ -97,8 +108,12 @@ const Form = styled(motion.form)`
 
 const Input = styled(motion.input)`
   width: 100%;
-  background-color: rgba(17, 25, 40, 0.83);
-  border: 1px solid ${({ theme }) => theme.text_secondary + 50};
+  background-color: ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(255, 255, 255, 0.9)" 
+    : "rgba(17, 25, 40, 0.83)"};
+  border: 1px solid ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(0, 0, 0, 0.2)" 
+    : theme.text_secondary + 50};
   outline: none;
   font-size: 16px;
   color: ${({ theme }) => theme.text_primary};
@@ -111,6 +126,9 @@ const Input = styled(motion.input)`
     border: 1px solid ${({ theme }) => theme.primary};
     box-shadow: 0 0 0 3px ${({ theme }) => theme.primary + 20};
     transform: translateY(-2px);
+    background-color: ${({ theme }) => theme.bg === "#FFFFFF" 
+      ? "rgba(255, 255, 255, 1)" 
+      : "rgba(17, 25, 40, 0.95)"};
   }
 
   &::placeholder {
@@ -130,8 +148,12 @@ const Input = styled(motion.input)`
 
 const TextArea = styled(motion.textarea)`
   width: 100%;
-  background-color: rgba(17, 25, 40, 0.83);
-  border: 1px solid ${({ theme }) => theme.text_secondary + 50};
+  background-color: ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(255, 255, 255, 0.9)" 
+    : "rgba(17, 25, 40, 0.83)"};
+  border: 1px solid ${({ theme }) => theme.bg === "#FFFFFF" 
+    ? "rgba(0, 0, 0, 0.2)" 
+    : theme.text_secondary + 50};
   outline: none;
   font-size: 16px;
   color: ${({ theme }) => theme.text_primary};
@@ -146,6 +168,9 @@ const TextArea = styled(motion.textarea)`
     border: 1px solid ${({ theme }) => theme.primary};
     box-shadow: 0 0 0 3px ${({ theme }) => theme.primary + 20};
     transform: translateY(-2px);
+    background-color: ${({ theme }) => theme.bg === "#FFFFFF" 
+      ? "rgba(255, 255, 255, 1)" 
+      : "rgba(17, 25, 40, 0.95)"};
   }
 
   &::placeholder {
@@ -269,7 +294,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
     }
 
     try {
-      const result = await sendEmail(formData);
+      await sendEmail(formData);
 
       setSubmitStatus({
         type: "success",

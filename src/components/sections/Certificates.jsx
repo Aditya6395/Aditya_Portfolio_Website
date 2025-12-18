@@ -449,7 +449,7 @@ const Certificates = () => {
       clearInterval(intervalRef.current);
       clearInterval(progressIntervalRef.current);
     };
-  }, [isPlaying, certificates.length]);
+  }, [isPlaying]);
 
   const goToSlide = (index) => {
     if (index === currentIndex) return;

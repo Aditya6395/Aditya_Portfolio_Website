@@ -36,7 +36,12 @@ const Top = styled.div`
   width: 100%;
   display: flex;
   max-width: 100%;
-  gap: 12px; 
+  gap: 12px;
+  
+  @media (max-width: 480px) {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
 `;
 const Image = styled.img`
   height: 50px;

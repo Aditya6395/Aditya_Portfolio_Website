@@ -55,6 +55,11 @@ const Image = styled.img`
   background-color: ${({ theme }) => theme.white};
   border-radius: 10px;
   box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  
+  @media (max-width: 480px) {
+    height: 160px;
+  }
 `;
 const Tags = styled.div`
   width: 100%;
@@ -71,6 +76,11 @@ const Tag = styled.div`
   background-color: ${({ theme }) => theme.primary + 15};
   padding: 2px 8px;
   border-radius: 10px;
+  
+  @media (max-width: 480px) {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
 `;
 const Details = styled.div`
   width: 100%;
@@ -90,6 +100,14 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 const Date = styled.div`
   font-size: 12px;
@@ -110,6 +128,13 @@ const Description = styled.div`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.5;
+  
+  @media (max-width: 480px) {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+  }
 `;
 const Members = styled.div`
   display: flex;
