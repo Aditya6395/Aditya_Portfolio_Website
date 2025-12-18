@@ -31,6 +31,11 @@ const Body = styled.div`
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  padding-top: 80px;
+  
+  @media (max-width: 768px) {
+    padding-top: 70px;
+  }
 `;
 
 const Wrapper = styled.div`

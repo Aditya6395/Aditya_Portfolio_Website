@@ -14,8 +14,11 @@ const Nav = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 1000;
   color: ${({ theme }) => theme.text_primary};
   border-bottom: 1px solid ${({ theme }) => theme.bg === "#FFFFFF" 
@@ -241,10 +244,30 @@ const MobileMenu = styled.ul`
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
+
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 80; // Height of navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo to="/">
+        <NavLogo to="/" onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}>
           <ColorText>&lt;</ColorText>
           <NameText>Aditya</NameText>
           <SlashText>/</SlashText>
@@ -268,28 +291,28 @@ const Navbar = () => {
         </MobileIcon>
 
         <NavItems role="navigation" aria-label="Main navigation">
-          <NavLink href="#About" aria-label="Go to About section">About</NavLink>
-          <NavLink href="#Skills" aria-label="Go to Skills section">Skills</NavLink>
-          <NavLink href="#Experience" aria-label="Go to Experience section">Experience</NavLink>
-          <NavLink href="#Projects" aria-label="Go to Projects section">Projects</NavLink>
-          <NavLink href="#Education" aria-label="Go to Education section">Education</NavLink>
+          <NavLink href="#About" onClick={(e) => handleNavClick(e, "About")} aria-label="Go to About section">About</NavLink>
+          <NavLink href="#Skills" onClick={(e) => handleNavClick(e, "Skills")} aria-label="Go to Skills section">Skills</NavLink>
+          <NavLink href="#Experience" onClick={(e) => handleNavClick(e, "Experience")} aria-label="Go to Experience section">Experience</NavLink>
+          <NavLink href="#Projects" onClick={(e) => handleNavClick(e, "Projects")} aria-label="Go to Projects section">Projects</NavLink>
+          <NavLink href="#Education" onClick={(e) => handleNavClick(e, "Education")} aria-label="Go to Education section">Education</NavLink>
         </NavItems>
 
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#About">
+            <NavLink onClick={(e) => handleNavClick(e, "About")} href="#About">
               About
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Skills">
+            <NavLink onClick={(e) => handleNavClick(e, "Skills")} href="#Skills">
               Skills
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Experience">
+            <NavLink onClick={(e) => handleNavClick(e, "Experience")} href="#Experience">
               Experience
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Projects">
+            <NavLink onClick={(e) => handleNavClick(e, "Projects")} href="#Projects">
               Projects
             </NavLink>
-            <NavLink onClick={() => setIsOpen(!isOpen)} href="#Education">
+            <NavLink onClick={(e) => handleNavClick(e, "Education")} href="#Education">
               Education
             </NavLink>
             <GithubButton
