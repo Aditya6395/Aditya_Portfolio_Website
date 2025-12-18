@@ -11,6 +11,7 @@ import StarCanvas from "./components/canvas/Stars";
 import Education from "./components/sections/Education";
 import Experience from "./components/sections/Experience";
 import Projects from "./components/sections/Projects";
+import Certificates from "./components/sections/Certificates";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -150,6 +151,7 @@ function App() {
                 <Projects openModal={openModal} setOpenModal={setOpenModal} />
                 <Wrapper>
                   <Education />
+                  <Certificates />
                   <Contact />
                 </Wrapper>
                 <Footer />

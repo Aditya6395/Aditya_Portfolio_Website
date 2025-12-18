@@ -634,3 +634,36 @@ export const projects = [
   //   webapp: "https://github.com/rishavchanda/Face-Recodnition-AI-with-Python",
   // },
 ];
+
+export const certificates = [
+  {
+    id: 0,
+    title: "Certificate 1",
+    description: "Add your certificate description here",
+    image: "", // Add image URL here
+  },
+  {
+    id: 1,
+    title: "Certificate 2",
+    description: "Add your certificate description here",
+    image: "", // Add image URL here
+  },
+  {
+    id: 2,
+    title: "Certificate 3",
+    description: "Add your certificate description here",
+    image: "", // Add image URL here
+  },
+  {
+    id: 3,
+    title: "Certificate 4",
+    description: "Add your certificate description here",
+    image: "", // Add image URL here
+  },
+  {
+    id: 4,
+    title: "Certificate 5",
+    description: "Add your certificate description here",
+    image: "", // Add image URL here
+  },
+];

@@ -296,6 +296,7 @@ const Navbar = () => {
           <NavLink href="#Experience" onClick={(e) => handleNavClick(e, "Experience")} aria-label="Go to Experience section">Experience</NavLink>
           <NavLink href="#Projects" onClick={(e) => handleNavClick(e, "Projects")} aria-label="Go to Projects section">Projects</NavLink>
           <NavLink href="#Education" onClick={(e) => handleNavClick(e, "Education")} aria-label="Go to Education section">Education</NavLink>
+          <NavLink href="#Certificates" onClick={(e) => handleNavClick(e, "Certificates")} aria-label="Go to Certificates section">Certificates</NavLink>
         </NavItems>
 
         {isOpen && (
@@ -314,6 +315,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink onClick={(e) => handleNavClick(e, "Education")} href="#Education">
               Education
+            </NavLink>
+            <NavLink onClick={(e) => handleNavClick(e, "Certificates")} href="#Certificates">
+              Certificates
             </NavLink>
             <GithubButton
               href={Bio.github}
