@@ -6,42 +6,66 @@
   padding: 0;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Better font rendering across platforms */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Fix for iOS Safari viewport */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
   margin: 0px !important;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Better rendering on Windows */
+  text-rendering: optimizeLegibility;
+  /* Prevent horizontal scroll on mobile */
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
 }
 
-/* width */
+/* Scrollbar styles - Cross browser support */
+/* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 4px;
-  height: 80px;
+  height: 4px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #222a35;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #575c66;
   border-radius: 6px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #626970;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #575c66 #222a35;
+}
+
+/* IE and Edge (legacy) */
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 ::-webkit-backdrop-filter {
@@ -86,14 +110,40 @@ html {
 }
 
 /* Performance optimizations */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: auto;
   loading: lazy;
+  /* Better image rendering on different devices */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Prevent image dragging on mobile */
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Better video and canvas rendering */
+video, canvas {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Fix for iOS Safari input zoom */
+input, textarea, select {
+  font-size: 16px !important;
+  /* Prevents zoom on iOS Safari when focusing inputs */
+}
+
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
 }
 
 /* Focus styles for accessibility */
@@ -137,4 +187,96 @@ img {
     background: white !important;
     color: black !important;
   }
+}
+
+/* Cross-platform compatibility fixes */
+
+/* Safari/iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for iOS Safari viewport height issue */
+  html, body {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Windows high contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+}
+
+/* Dark mode support for system preferences */
+@media (prefers-color-scheme: dark) {
+  /* Already handled by theme, but adding for compatibility */
+}
+
+/* Better touch targets for mobile devices */
+@media (max-width: 768px) {
+  button, a, input, textarea, select {
+    min-height: 44px; /* iOS recommended touch target */
+    min-width: 44px;
+  }
+}
+
+/* Fix for Windows font rendering */
+@supports (-ms-ime-align: auto) {
+  body {
+    font-weight: 400;
+  }
+}
+
+/* Better rendering on Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Fix for older browsers */
+@supports not (display: grid) {
+  /* Fallback for very old browsers */
+  * {
+    display: block;
+  }
+}
+
+/* Prevent text selection on UI elements (optional) */
+button, .no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Better focus visibility across platforms */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #854CE6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Fix for flexbox issues in older browsers */
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Smooth transitions with fallback */
+.transition {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
