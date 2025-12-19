@@ -311,10 +311,12 @@ const ContactPopup = ({ isOpen, onClose }) => {
       console.error("Error:", error);
       let errorMessage = error.message || "Failed to send message. Please try again later.";
       
-      // Provide helpful instructions if server is not running
-      if (errorMessage.includes("Unable to connect to server") || 
+      // Provide helpful instructions if server is not running (development only)
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      if (isDevelopment && (
+          errorMessage.includes("Unable to connect to server") || 
           errorMessage.includes("Failed to fetch") ||
-          errorMessage.includes("NetworkError")) {
+          errorMessage.includes("NetworkError"))) {
         errorMessage = "⚠️ Backend server is not running!\n\n" +
           "Please start the server:\n" +
           "1. Open terminal\n" +

@@ -1,10 +1,14 @@
 // Email service using backend API (to avoid CORS issues)
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+// In production (Vercel), use relative URL for serverless function
+// In development, use localhost server
+const isProduction = process.env.NODE_ENV === 'production';
+const API_URL = process.env.REACT_APP_API_URL || (isProduction ? '' : 'http://localhost:5000');
 
 export const sendEmail = async (formData) => {
   try {
-    console.log(`Sending email to: ${API_URL}/api/send-email`);
-    const response = await fetch(`${API_URL}/api/send-email`, {
+    const apiEndpoint = `${API_URL}/api/send-email`;
+    console.log(`Sending email to: ${apiEndpoint}`);
+    const response = await fetch(apiEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
